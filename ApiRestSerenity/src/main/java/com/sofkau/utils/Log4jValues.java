@@ -1,16 +1,17 @@
 package com.sofkau.utils;
 
-public enum ReqresResources {
-    REQRES_BASE_URL("https://reqres.in/"),
-    RESOURCE("api/users/");
+public enum Log4jValues {
+
+    LOG4J_PROPERTY_PATH("src/test/resources/log4j.properties");
 
     private final String value;
 
-    ReqresResources(String value) {
+    Log4jValues(String value) {
         this.value = value;
     }
 
     public String getValue() {
         return value;
     }
+
 }
