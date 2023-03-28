@@ -1,8 +1,10 @@
 package com.sofkau.utils;
 
 public enum ReqresResources {
-    REQRES_BASE_URL(""),
-    RESOURCE("");
+
+    BASE_JSON_URL("https://jsonplaceholder.typicode.com/"),
+    DELETE_ALBUM("albums/"),
+    POST_RESOURCE("posts/");
 
     private final String value;
 
