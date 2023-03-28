@@ -52,6 +52,8 @@ Ejemplo del reporte:
 3. Capturas de pantalla de los reportes Generados.
 4. Conclusiones del taller.
 
+Bonus james
+
 Plugin requeridos en intellij:
 - Gherkin
 - Cucumber for Java
