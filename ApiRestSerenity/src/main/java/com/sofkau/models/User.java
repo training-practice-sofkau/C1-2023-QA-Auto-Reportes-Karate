@@ -1,5 +1,5 @@
 package com.sofkau.models;
 
-public class Model {
+public class User {
 
 }
