@@ -7,8 +7,9 @@ Feature:Creacion de usuario
   Scenario Outline:Registro exitoso
     Given que el usuario esta en la pagina de registro de la api
     When el usuario envia una peticion post con el name <name> y job <job>
-    Then el usuario debe ver un codeStatus <code> de respuesta y el id
+    Then el usuario debe ver un codeStatus <code> de respuesta y el id <id>
     Examples:
-      | name       | job  | code |
-      | "Antonio"  | "QA" | 200  |
-      | "Angelica" | "QA" | 200  |
+      | name       | job  | code | id   |
+      | "Antonio"  | "QA" | 201  | 2 |
+      | "Maria"    | "QA" | 201  | 24|
+      | "Angelica" | "QA" | 201  | 22|

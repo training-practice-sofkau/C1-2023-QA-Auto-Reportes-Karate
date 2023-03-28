@@ -6,7 +6,9 @@ import com.sofkau.setup.ApiSetUp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.rest.SerenityRest;
 import org.apache.http.HttpStatus;
+import org.apache.log4j.Logger;
 
 import static com.sofkau.questions.ReturnRegistrarUsuarioSuccessfulJsonResponse.returnRegistrarUsuario;
 import static com.sofkau.tasks.DoPost.doPost;
@@ -17,6 +19,7 @@ import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeT
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class RegistrarUsuarioStepDefinition extends ApiSetUp {
+    private static final Logger LOGGER = Logger.getLogger(ConsultarRecursoStepDefinition.class.getName());
     private RegistrarUsuario registrarUsuario = new RegistrarUsuario();
 
     @Given("que el usuario esta en la pagina de registro de la api")
@@ -31,19 +34,25 @@ public class RegistrarUsuarioStepDefinition extends ApiSetUp {
         actor.attemptsTo(
                 doPost()
                         .withTheResource(REGISTER_SUCCESSFUL_RESOURCE.getValue())
-                        .andTheRequestBody(String.valueOf(registrarUsuario)));
-
+                        .andTheRequestBody(registrarUsuario)
+        );
+        System.out.println(SerenityRest.lastResponse().body().asString());
     }
-    @Then("el usuario debe ver un codeStatus {int} de respuesta y el id")
-    public void elUsuarioDebeVerUnCodeStatusDeRespuestaYElId(Integer code) {
+    @Then("el usuario debe ver un codeStatus {int} de respuesta y el id {int}")
+    public void elUsuarioDebeVerUnCodeStatusDeRespuestaYElId(Integer code, Integer id) {
+        try {
         RegistrarUsuario registrarUsuario1 = returnRegistrarUsuario().answeredBy(actor);
         actor.should(
-                seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_OK,
+                seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_CREATED,
                         response -> response.statusCode(code)),
                 seeThat("Retorna información",
-                        act -> registrarUsuario1, notNullValue())
+                       act -> registrarUsuario1, notNullValue())
         );
+            LOGGER.info("Respuesta status code: " + code);
+        } catch (Exception e) {
+            LOGGER.error("****** Se tiene el siguiente error -->: ", e);
+            throw e;
+        }
     }
-
 
 }

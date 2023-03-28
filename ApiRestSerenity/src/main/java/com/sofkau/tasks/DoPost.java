@@ -13,7 +13,7 @@ public class DoPost implements Task {
         this.resource=resource;
         return this;
     }
-    public DoPost andTheRequestBody(String requestBody){
+    public DoPost andTheRequestBody(Object requestBody){
         this.requestBody = requestBody;
         return this;
     }
