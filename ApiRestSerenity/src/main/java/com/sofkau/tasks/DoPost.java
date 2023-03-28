@@ -10,8 +10,6 @@ public class DoPost implements Task {
     private String resource;
     private Object requestBody;
 
-
-
     public DoPost withTheResource(String resource){
         this.resource=resource;
         return this;
