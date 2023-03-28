@@ -11,8 +11,8 @@ Feature: login to the system
     Examples:
       | email                      | password  | statusCode |
       | "eve.holt@reqres.in"       | "pass111" | 200        |
-      | "janet.weaver@reqres.in"   | "pass222" | 200        |
-      | "jesus.molina@gmail.com"   | "pass333" | 400        |
+      | "janet.weaver@reqres.in"   | ""        | 400        |
+      | ""                         | "pass333" | 400        |
       | "miguel.mendoza@gmail.com" | "pass444" | 400        |
 
 
