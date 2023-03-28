@@ -5,7 +5,7 @@ Feature: Obtener simple usuario
 
 
   @SimpleUsuario
-  Scenario Outline: Obtener todos los juegos
+  Scenario Outline: Obtener un usuario
     Given que el usuario se encuentra en la página obtener usuario
     When el usuario envía una solicitud con el <id> del usuario deseado
     Then el usuario  recibe un estatus <code> con usuario encontrado

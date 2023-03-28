@@ -1,28 +1,26 @@
 package com.sofkau.models;
 
-import lombok.Data;
-
-public class Usuario{
+public class UsuarioResponse {
 
 	private String lastName;
 	private int id;
 	private String avatar;
 	private String firstName;
 	private String email;
-	private Support support;
+	private SupportResponse supportResponse;
 
 
-	public Usuario(String lastName, int id, String avatar, String firstName, String email, Support support) {
+	public UsuarioResponse(String lastName, int id, String avatar, String firstName, String email, SupportResponse supportResponse) {
 		this.lastName = lastName;
 		this.id = id;
 		this.avatar = avatar;
 		this.firstName = firstName;
 		this.email = email;
-		this.support = support;
+		this.supportResponse = supportResponse;
 	}
 
 
-	public Usuario() {
+	public UsuarioResponse() {
 	}
 
 
@@ -66,12 +64,12 @@ public class Usuario{
 		this.email = email;
 	}
 
-	public Support getSupport() {
-		return support;
+	public SupportResponse getSupport() {
+		return supportResponse;
 	}
 
-	public void setSupport(Support support) {
-		this.support = support;
+	public void setSupport(SupportResponse supportResponse) {
+		this.supportResponse = supportResponse;
 	}
 
 

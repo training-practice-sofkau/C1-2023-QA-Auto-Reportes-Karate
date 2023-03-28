@@ -11,5 +11,5 @@ import org.junit.runner.RunWith;
         glue = {"com.sofkau.stepdefinitions"},
         features = {"src/test/resources/features/crearusuario.feature"}
 )
-public class PostUsuarioRunner {
+public class PostUsuarioRunnerResponse {
 }

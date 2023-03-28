@@ -6,10 +6,10 @@ Feature: Crear usuario
   @CrearUsuario
   Scenario Outline: Crear un nuevo producto
     Given que el usuario se encuentra en la página crear usuario
-    When el usuario envia la peticion de crea un nuevo usuario con <nombre>, <job>
+    When el usuario envia la peticion de crea un nuevo usuario con <name>, <job>
     Then el usuario debria ver un mensaje con informacion del nuevoo usuario creado con un estatus <code>
     Examples:
-      | nombre     | job      | code |
-      | "morpheus" | "leader" | 200  |
-      | "morpheus" | "leader" | 200  |
+      | name       | job      | code |
+      | "morpheus" | "leader" | 201  |
+      | "morpheus" | "leader" | 201  |
 
