@@ -61,6 +61,25 @@ Plugin requeridos en IntelliJ:
 - Gherkin
 - Cucumber for Java
 
+- - -
+
+# Workshop solution
+
+The `ApiRestSerenity` and `PruebasKarate` folders contain the automations of the CRUD functions provided by the REQRES 
+API. The `Reports&PostmanTest.pdf` file details the requests used, as well as defining which ones are automated with the
+Serenity library and which ones with the Karate framework.
+
+The reports of the automated executions are also attached in this file.
+
+## Conclusions
+
+TODO: add conclusions of the workshop
+
+>Note: as a value-added, the entire workshop was developed in English, and seeking to write clean and readable code, 
+> following KISS principle. 💋
+
+- - -
+
 *By: Jonathan Vargas 🐢 Ococho*
 
 <a href="https://gitmoji.dev">
