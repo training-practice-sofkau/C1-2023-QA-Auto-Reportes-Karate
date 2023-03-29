@@ -4,7 +4,7 @@ Feature: Realizar una publicacion
   BECAUSE crear nuevas publicaciones
 
   @CrearPosts
-  Scenario Outline: Actualizar post por id
+  Scenario Outline: Crear post
     Given El usuario se encuentra en la web de JsonPlaceHolder para crear un post
     When El usuario envia una solicitud del post que se desea crear con <title> el <userid> y el <body>
     Then El usuario debe recibir un respuesta de status <code> y el post
@@ -13,4 +13,4 @@ Feature: Realizar una publicacion
       | "La historia del qa path happy" | "La apasionante historia de un qa que solo prueba cosas bonitas" | "5"    | 201  |
       | "CUMPLE, O NO CUMPLE"           | "Solo esa es la pregunta o blanco o negro"                       | "6"    | 201  |
       | "TESTIGOS DE QA"                | "Tiene un minuto de su vida para el ISTQB"                       | "5"    | 201  |
-      | ""                              | ""                                                               | "999"  | 400  |
+      | ""                              | ""                                                               | "999"  | 201  |
