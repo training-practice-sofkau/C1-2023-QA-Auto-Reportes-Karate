@@ -8,8 +8,11 @@ Feature: Crear un usuario en reqres.in
     Then status 201
     And match $.name == '#(name)'
     And match $.job == '#(job)'
+    And match $.createdAt != null
 
     Examples:
     |name   |job    |
     |pedro  |QA     |
     |juan   |profe  |
+    |Juan   |profe  |
+    |JuAn   |profe  |

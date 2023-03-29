@@ -81,7 +81,9 @@ public class UpdateUserStepDefinition extends ApiSetUp {
                     seeThat("Se recibe la edad del usuario actualizado",
                             ed-> user.getEdad(), equalTo(actualResponseUpdateUser.getEdad())),
                     seeThat("Se recibe el trabajo del usuario actualizado",
-                            tra-> user.getTrabajo(), equalTo(actualResponseUpdateUser.getTrabajo()))
+                            tra-> user.getTrabajo(), equalTo(actualResponseUpdateUser.getTrabajo())),
+                    seeThat("La fecha de actualizacion no es vacia",
+                            fecha-> actualResponseUpdateUser.getUpdatedAt(),notNullValue())
             );
         }catch (Exception e){
             LOGGER.warning(e.getMessage());

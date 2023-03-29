@@ -10,6 +10,8 @@ Feature: Ver informacion de una baya pokemon
     And la <informacion> acerca de la baya
     Examples:
       | idnombre | codigo | informacion |
+      | "1"      | 200    | "jaboca"    |
+      | "1"      | 404    | "cheri"     |
       | "1"      | 200    | "cheri"     |
       | "cheri"  | 200    | "cheri"     |
       | "63"     | 200    | "jaboca"    |
