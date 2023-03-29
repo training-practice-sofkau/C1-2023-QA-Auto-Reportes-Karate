@@ -1,49 +1,49 @@
 package com.sofkau.models.getmodel;
 
 public class Data{
-	private String lastName;
+	private String last_name;
 	private int id;
 	private String avatar;
-	private String firstName;
+	private String first_name;
 	private String email;
 
-	public void setLastName(String lastName){
-		this.lastName = lastName;
+	public String getLast_name() {
+		return last_name;
 	}
 
-	public String getLastName(){
-		return lastName;
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
-	public void setId(int id){
-		this.id = id;
-	}
-
-	public int getId(){
+	public int getId() {
 		return id;
 	}
 
-	public void setAvatar(String avatar){
-		this.avatar = avatar;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getAvatar(){
+	public String getAvatar() {
 		return avatar;
 	}
 
-	public void setFirstName(String firstName){
-		this.firstName = firstName;
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
-	public String getFirstName(){
-		return firstName;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setEmail(String email){
-		this.email = email;
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
 
-	public String getEmail(){
+	public String getEmail() {
 		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

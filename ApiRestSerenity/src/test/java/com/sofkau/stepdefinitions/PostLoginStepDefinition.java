@@ -20,7 +20,6 @@ import static com.sofkau.utils.ReqresResources.LOGIN_RESOURCE;
 import static com.sofkau.utils.ReqresResources.REQRES_BASE_URL;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 

@@ -1,7 +1,7 @@
 Feature: login to the system
   AS reqres user
   I WANT TO login to the system
-  THAT I can use the system services
+  SO THAT I can use the system services
 
   @Login
   Scenario Outline: login to the system
