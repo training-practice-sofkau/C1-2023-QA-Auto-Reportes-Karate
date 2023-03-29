@@ -5,12 +5,12 @@ Feature: creando un post nuevo
 
   Scenario Outline: creando un post
     Given estoy en la pagina de post de jsonplaceholder
-    When creo un post con la informacion <titulo>, <cuerpo>, <id>
-    Then me debe devolver el post creado con <code> y <titulo> nuevo
+    When creo un post con la informacion <userid>, <id>, <title>, <body>
+    Then me debe devolver el <codigo> del resultado exitoso
 
     Examples:
-      | titulo           | cuerpo    | id | code |
-      | "cerveza aguila" | "malta"   | 1  | 200  |
-      | "cerveza pilsen" | "cebada"  | 2  | 200  |
-      | "cerveza club"   | "alcohol" | 3  | 200  |
+      | userid | id | title                              | body     | codigo |
+      | 1      | 1  | "Cien anuos de soledad"            | "autor1" | 201    |
+      | 1      | 2  | "la importancia de morir a tiempo" | "autor2" | 201    |
+      | 20     | A  | "lucifer"                          | "autor3" | 201    |
 

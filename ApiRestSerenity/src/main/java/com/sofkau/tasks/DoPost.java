@@ -3,7 +3,7 @@ package com.sofkau.tasks;
 import io.restassured.http.ContentType;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.rest.interactions.Put;
+import net.serenitybdd.screenplay.rest.interactions.Post;
 
 public class DoPost implements Task {
     private String resource;
@@ -22,14 +22,13 @@ public class DoPost implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Put.to(resource)
+                Post.to(resource)
                         .with(
                                 request -> request.contentType(ContentType.JSON)
                                         .body(requestBody)
                         )
         );
     }
-
     public static DoPost doPost() {
         return new DoPost();
     }

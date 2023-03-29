@@ -3,8 +3,10 @@ package com.sofkau.utils;
 public enum ReqresResources {
 
     BASE_JSON_URL("https://jsonplaceholder.typicode.com/"),
-    DELETE_ALBUM("albums/"),
-    POST_RESOURCE("posts/");
+    POST_RESOURCE("posts/"),
+    DELETE_PHOTO("photos/"),
+    BASE_POKE_URL("https://pokeapi.co/api/v2/"),
+    POKEMON_RESOURCE("pokemon/");
 
     private final String value;
 

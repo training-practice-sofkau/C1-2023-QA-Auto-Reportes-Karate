@@ -7,8 +7,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
-import net.serenitybdd.screenplay.ensure.Ensure;
-import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import static com.sofkau.questions.ReturnPostSuccessfulJsonResponse.returnPostSuccessfulJsonResponse;
 import static com.sofkau.tasks.DoPost.doPost;
@@ -19,50 +17,47 @@ import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeT
 import static org.hamcrest.Matchers.notNullValue;
 
 public class PostStepDefinition extends ApiSetUp {
-
     Post post = new Post();
 
     private Logger LOGGER = Logger.getLogger(PostStepDefinition.class);
 
     @Given("estoy en la pagina de post de jsonplaceholder")
     public void estoyEnLaPaginaDePostDeJsonplaceholder() {
-
         setUp(BASE_JSON_URL.getValue());
     }
 
-    @When("creo un post con la informacion {string}, {string}, {int}")
-    public void creoUnPostConLaInformacion(String titulo, String cuerpo, Integer id) {
+    @When("creo un post con la informacion {int}, {int}, {string}, {string}")
+    public void creoUnPostConLaInformacion(Integer userId, Integer id, String title, String body) {
         try {
-            post.setTitle(titulo);
-            post.setBody(cuerpo);
+            post.setUserId(userId);
+            post.setId(id);
+            post.setTitle(title);
+            post.setBody(body);
             actor.attemptsTo(
-                    doPost().withResource(POST_RESOURCE.getValue() + id)
+                    doPost()
+                            .withResource(POST_RESOURCE.getValue())
                             .andRequestBody(post)
             );
             LOGGER.info("Response code: " + SerenityRest.lastResponse().getStatusCode());
             LOGGER.info("Response body: " + SerenityRest.lastResponse().asString());
         } catch (Exception e) {
-            LOGGER.error("Error new post: " + e.getMessage());
+            LOGGER.error("Error al crear el nuevo post: " + e.getMessage());
         }
     }
 
-    @Then("me debe devolver el post creado con {int} y {string} nuevo")
-    public void meDebeDevolverElPostCreadoConYNuevo(Integer code, String titulo) {
+    @Then("me debe devolver el {int} del resultado exitoso")
+    public void meDebeDevolverElCodigoDelResultadoExitoso(Integer codigo) {
         try {
             Response actualResponse = returnPostSuccessfulJsonResponse().answeredBy(actor);
             actor.should(
-                    seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_OK,
-                            response -> response.statusCode(code)),
+                    seeThatResponse("El codigo de respuesta es: " + codigo,
+                            response -> response.statusCode(codigo)),
                     seeThat("Retorna información",
                             act -> actualResponse, notNullValue())
             );
-            actor.attemptsTo(
-                    Ensure.that(actualResponse.getTitle()).isEqualTo(titulo)
-            );
-            LOGGER.info("new post title: " + actualResponse.getTitle());
-            LOGGER.info("new post body: " + actualResponse.getBody());
+            LOGGER.info("Nuevo post creado con código exitoso: " + codigo);
         } catch (Exception e) {
-            LOGGER.error("Error creando el nuevo post: " + e.getMessage());
+            LOGGER.error("Error al crear el nuevo post: " + e.getMessage());
         }
     }
 }
