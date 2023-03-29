@@ -5,3 +5,5 @@ Feature: Update User
     And request { "name": "yeison", "job": "zion resident" }
     When method put
     Then status 200
+    And match $.name == 'yeison'
+

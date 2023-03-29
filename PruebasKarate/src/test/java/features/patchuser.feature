@@ -6,3 +6,5 @@ Feature: Patch User
     And request { "name": "yeison", "job": "zion resident" }
     When method Patch
     Then status 200
+    And match $.name == 'yeison'
+
