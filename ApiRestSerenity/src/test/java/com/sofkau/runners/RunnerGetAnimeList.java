@@ -1,5 +1,4 @@
 package com.sofkau.runners;
-
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
@@ -8,7 +7,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         glue = {"com.sofkau.stepdefinitions"},
-        features = {"src/test/resources/features/myfeature.feature"}
+        features = {"src/test/resources/features/GetAnimeList.feature"}
 )
-public class Runner {
+public class RunnerGetAnimeList {
 }
