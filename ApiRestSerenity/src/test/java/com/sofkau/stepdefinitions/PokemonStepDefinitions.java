@@ -8,20 +8,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
-
 import static com.sofkau.tasks.DoGetPokemon.doGetPokemon;
 import static com.sofkau.utils.ReqresResources.*;
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
-import static org.hamcrest.Matchers.notNullValue;
 
 public class PokemonStepDefinitions extends ApiSetUp {
 
     private Logger LOGGER = Logger.getLogger(PokemonStepDefinitions.class);
-
 
     @Given("el usuario esta en la PokeApi")
     public void elUsuarioEstaEnLaPokeApi() {

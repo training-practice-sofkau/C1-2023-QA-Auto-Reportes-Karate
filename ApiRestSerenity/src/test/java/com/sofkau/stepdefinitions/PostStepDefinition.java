@@ -35,11 +35,10 @@ public class PostStepDefinition extends ApiSetUp {
         }
     }
 
-    @When("creo un post con la informacion {int}, {int}, {string}, {string}")
-    public void creoUnPostConLaInformacion(Integer userId, Integer id, String title, String body) {
+    @When("creo un post con la informacion {int}, {string}, {string}")
+    public void creoUnPostConLaInformacion(Integer userId, String title, String body) {
         try {
             post.setUserId(userId);
-            post.setId(id);
             post.setTitle(title);
             post.setBody(body);
             actor.attemptsTo(
