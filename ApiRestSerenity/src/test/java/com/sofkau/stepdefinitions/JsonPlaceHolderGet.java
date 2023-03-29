@@ -37,7 +37,7 @@ public class JsonPlaceHolderGet extends ApiSetUp{
     public void theUserSeesAStatusAndThePostHeWantsWithTheId(Integer intUno, Integer intDos) {
         Response actualResponse = returnRegisterSuccessfulJsonResponse().answeredBy(actor);
         actor.should(
-                seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_OK,
+                seeThatResponse("El codigo de respuesta es: " + SerenityRest.lastResponse().statusCode(),
                         response -> response.statusCode(intUno)),
                 seeThat("Retorna información",
                         act -> actualResponse, notNullValue())

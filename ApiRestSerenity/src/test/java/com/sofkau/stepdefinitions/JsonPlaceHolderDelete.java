@@ -60,7 +60,7 @@ public class JsonPlaceHolderDelete extends ApiSetUp{
     public void theUserSeesAStatus(Integer intUno) {
         try{
             actor.should(
-                    seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_OK,
+                    seeThatResponse("El codigo de respuesta es: " + SerenityRest.lastResponse().statusCode(),
                             response -> response.statusCode(intUno))
             );
         }catch (Exception e){
