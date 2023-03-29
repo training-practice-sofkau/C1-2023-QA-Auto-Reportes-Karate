@@ -1,8 +1,8 @@
 package com.sofkau.utils;
 
 public enum ReqresResources {
-    REQRES_BASE_URL(""),
-    RESOURCE("");
+    ANIME_JINKAN_BASE_URL("https://api.jikan.moe/v4/"),
+    ANIME_JINKAN_RESOURCE("anime/");
 
     private final String value;
 

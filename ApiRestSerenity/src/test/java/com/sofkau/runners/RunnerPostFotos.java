@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         glue = {"com.sofkau.stepdefinitions"},
-        features = {"src/test/resources/features/myfeature.feature"}
+        features = {"src/test/resources/features/PostPhotosPlaceHolder.feature"}
 )
-public class Runner {
+
+public class RunnerPostFotos {
 }
