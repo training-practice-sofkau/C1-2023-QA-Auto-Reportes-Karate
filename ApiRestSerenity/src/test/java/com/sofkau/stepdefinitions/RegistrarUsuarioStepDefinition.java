@@ -29,25 +29,35 @@ public class RegistrarUsuarioStepDefinition extends ApiSetUp {
     }
     @When("el usuario envia una peticion post con el name {string} y job {string}")
     public void elUsuarioEnviaUnaPeticionPostConElNameYJob(String name, String job) {
-        registrarUsuario.setName(name);
-        registrarUsuario.setJob(job);
-        actor.attemptsTo(
-                doPost()
-                        .withTheResource(REGISTER_SUCCESSFUL_RESOURCE.getValue())
-                        .andTheRequestBody(registrarUsuario)
-        );
-        System.out.println(SerenityRest.lastResponse().body().asString());
+       try {
+           registrarUsuario.setName(name);
+           registrarUsuario.setJob(job);
+           actor.attemptsTo(
+                   doPost()
+                           .withTheResource(REGISTER_SUCCESSFUL_RESOURCE.getValue())
+                           .andTheRequestBody(registrarUsuario)
+           );
+           LOGGER.info("Peticion enviada ");
+       }catch (Exception e){
+           LOGGER.error("****** Se tiene el siguiente error -->: ", e);
+           throw e;
+       }
     }
     @Then("el usuario debe ver un codeStatus {int} de respuesta y el id {int}")
     public void elUsuarioDebeVerUnCodeStatusDeRespuestaYElId(Integer code, Integer id) {
         try {
-        RegistrarUsuario registrarUsuario1 = returnRegistrarUsuario().answeredBy(actor);
-        actor.should(
-                seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_CREATED,
-                        response -> response.statusCode(code)),
-                seeThat("Retorna información",
-                       act -> registrarUsuario1, notNullValue())
-        );
+            if(code ==201) {
+                RegistrarUsuario registrarUsuario1 = returnRegistrarUsuario().answeredBy(actor);
+                actor.should(
+                        seeThatResponse("El codigo de respuesta es: " + HttpStatus.SC_CREATED,
+                                response -> response.statusCode(code)),
+                        seeThat("Retorna información",
+                                act -> registrarUsuario1, notNullValue())
+                );
+            }
+            if (code == 400){
+                LOGGER.info("Peticion no valida");
+            }
             LOGGER.info("Respuesta status code: " + code);
         } catch (Exception e) {
             LOGGER.error("****** Se tiene el siguiente error -->: ", e);

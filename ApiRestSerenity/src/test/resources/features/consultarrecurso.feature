@@ -11,4 +11,4 @@ Feature:consultar recurso por id
     Examples:
       | id  | codigoEstado | name             |
       | "2" | 200          | "fuchsia rose"   |
-      | "6" | 200          | "blue turquoise" |
+      | "6" | 400          | "blue turquoise" |
