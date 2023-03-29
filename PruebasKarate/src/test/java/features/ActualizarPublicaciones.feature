@@ -1,9 +1,9 @@
-Feature: Actualizar anime
-  AS usuario de la web de anime
-  WANT actualizar informacion de animes
+Feature: Actualizar publicacion
+  AS usuario de la web de JSON PLACE HOLDER
+  WANT actualizar informacion en las publicaciones
   BEACAUSE quiero tener información actualizada
 
-  Scenario Outline: Actualizar anime por id
+  Scenario Outline: Actualizar publicacion por id
     Given url 'https://jsonplaceholder.typicode.com/posts/' + <id>
     And request { "userId": 1, "title": <title>, "body": <body>}
     When method PUT
