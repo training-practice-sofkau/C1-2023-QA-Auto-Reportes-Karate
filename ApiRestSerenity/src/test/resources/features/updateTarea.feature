@@ -12,3 +12,5 @@ Feature: Update Todos on the Page
     Examples:
       | id | userId | title          | completed |
       | 1  | "2"    | "Hacer oficio" | "true"    |
+      | 2  | "10"   | ""             | "false"   |
+      | 3  | ""     | "Cenar"        | ""        |
