@@ -1,5 +1,5 @@
 Feature: Crear un usuario en reqres.in
-
+@Create
   Scenario Outline: crear un usuario
     * url "https://reqres.in"
     * path "/api/users"
@@ -9,10 +9,12 @@ Feature: Crear un usuario en reqres.in
     And match $.name == '#(name)'
     And match $.job == '#(job)'
     And match $.createdAt != null
+    And match $.id != null
+    And def idUser = $.id
 
     Examples:
-    |name   |job    |
-    |pedro  |QA     |
-    |juan   |profe  |
-    |Juan   |profe  |
-    |JuAn   |profe  |
+      | name  | job   |
+      | pedro | QA    |
+      | juan  | profe |
+      | Juan  | profe |
+      | JuAn  | profe |
