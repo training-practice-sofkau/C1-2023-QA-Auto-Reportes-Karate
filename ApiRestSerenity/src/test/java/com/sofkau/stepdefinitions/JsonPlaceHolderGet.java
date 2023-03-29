@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 
 import static com.sofkau.questions.ReturnRegisterSuccessfulJsonResponse.returnRegisterSuccessfulJsonResponse;
 import static com.sofkau.tasks.DoGet.doGet;
-import static com.sofkau.utils.ReqresResources.GET_RESOURCE;
-import static com.sofkau.utils.ReqresResources.JSON_PLACE_HOLDER;
+import static com.sofkau.utils.JsonPlaceHolderResources.GET_RESOURCE;
+import static com.sofkau.utils.JsonPlaceHolderResources.JSON_PLACE_HOLDER;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 import static org.hamcrest.CoreMatchers.notNullValue;
