@@ -1,4 +1,4 @@
-Feature: plan de pruebas api REST
+Feature: Post Outline
 
   Scenario Outline: casos de prueba <nombreCaso2>
     Given url 'https://reqres.in/api/users'
@@ -11,8 +11,8 @@ Feature: plan de pruebas api REST
       | name nulo      | name | null     | job | "QA"  |
       | name 3 letras  | name | "sol"    | job | "QA"  |
       | sin campo name |      |          | job | "QA"  |
-      | job vacio      | name | "jeremy" | job | ""    |
-      | job nulo       | name | "jeremy" | job | null  |
-      | job 3 letras   | name | "jeremy" | job | "QAs" |
-      | sin campo job  | name | "jeremy" |     | ""    |
+      | job vacio      | name | "yeison" | job | ""    |
+      | job nulo       | name | "yeison" | job | null  |
+      | job 3 letras   | name | "yeison" | job | "QAs" |
+      | sin campo job  | name | "yeison" |     | ""    |
 

@@ -1,4 +1,4 @@
-package features;
+package com.softkau.runners;
 
 
 import com.intuit.karate.junit5.Karate;

@@ -1,4 +1,4 @@
-Feature: Update Feature
+Feature: Update User
 
   Scenario: Put a user
     Given url "https://reqres.in" + "/api/users/" + "2"

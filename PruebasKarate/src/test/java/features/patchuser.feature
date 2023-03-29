@@ -1,4 +1,4 @@
-Feature: Patch Feature
+Feature: Patch User
 
   @Put
   Scenario: Put a user
