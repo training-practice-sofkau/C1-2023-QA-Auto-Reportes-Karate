@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'com.sofkau'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -12,9 +12,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    // https://mvnrepository.com/artifact/com.intuit.karate/karate-junit5
-    implementation 'com.intuit.karate:karate-junit5:1.4.0.RC2'
-
+    implementation 'com.intuit.karate:karate-core:1.4.0.RC3'
+    implementation 'com.intuit.karate:karate-junit5:1.4.0.RC3'
 }
 
 test {
