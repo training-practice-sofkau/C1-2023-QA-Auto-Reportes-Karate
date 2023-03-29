@@ -73,7 +73,16 @@ The reports of the automated executions are also attached in this file.
 
 ## Conclusions
 
-TODO: add conclusions of the workshop
+Both tools are very powerful and allows to manipulate requests and responses in an intuitive and readable way.
+
+Karate is much more user-friendly, since all test statements are made directly in the feature file. Serenity allows to 
+manipulate in more detail the different parts of the request, knowing in depth the actions performed.
+
+The folder structure suggested in the Karate framework is less tidy than the one used by the Serenity library.
+
+It is important to know and be able to use both tools, since in a real production environment, the use of different 
+tools may be encountered or required. In addition, they expand the ability to deal with a problem, since there are 
+different ways to work and solve it.
 
 >Note: as a value-added, the entire workshop was developed in English, and seeking to write clean and readable code, 
 > following KISS principle. 💋
