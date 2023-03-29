@@ -10,7 +10,7 @@ Feature: Realizar una publicacion
     Then El usuario debe recibir un respuesta de status <code> y el post
     Examples:
       | title                           | body                                                             | userid | code |
-      | "La historia del qa paht happy" | "La apasionante historia de un qa que solo prueba cosas bonitas" | "5"    | 201  |
+      | "La historia del qa path happy" | "La apasionante historia de un qa que solo prueba cosas bonitas" | "5"    | 201  |
       | "CUMPLE, O NO CUMPLE"           | "Solo esa es la pregunta o blanco o negro"                       | "6"    | 201  |
       | "TESTIGOS DE QA"                | "Tiene un minuto de su vida para el ISTQB"                       | "5"    | 201  |
       | ""                              | ""                                                               | "999"  | 400  |
