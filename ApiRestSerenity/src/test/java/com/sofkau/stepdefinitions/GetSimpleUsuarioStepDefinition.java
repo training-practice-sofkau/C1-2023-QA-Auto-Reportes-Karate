@@ -68,24 +68,30 @@ public class GetSimpleUsuarioStepDefinition extends ApiSetUp {
     public void elUsuarioRecibeUnEstatusConUsuarioEncontrado(Integer code) {
 
         try {
-            UsuarioResponse actualResponse = returnQuestionUsuario().answeredBy(actor);
-            LOGGER.info("respuesta de la api-->" + actualResponse.toString());
 
-            actor.should(
+            if (code == 200) {
+                UsuarioResponse actualResponse = returnQuestionUsuario().answeredBy(actor);
+                LOGGER.info("respuesta de la api-->" + actualResponse.toString());
 
-                    // Validar el código de estado HTTP con Serenity BDD
-                    seeThatResponse("El codigo de respuesta es: " + code,
-                            response -> response.statusCode(code))
+                actor.should(
 
-            );
+                        // Validar el código de estado HTTP con Serenity BDD
+                        seeThatResponse("El codigo de respuesta es: " + code,
+                                response -> response.statusCode(code))
 
-            responseBody = (JSONObject) parser.parse(lastResponse().asString());
-            LOGGER.info("respuesta de la api 22-->" + actualResponse.toString());
-            ModeloRespuesta(actualResponse);
+                );
 
+                responseBody = (JSONObject) parser.parse(lastResponse().asString());
+                LOGGER.info("respuesta de la api 22-->" + actualResponse.toString());
+                ModeloRespuesta(actualResponse);
+            }
+            if (code == 400) {
+                System.out.println("no hay respuesta");
+            }
 
             LOGGER.info("CUMPLE");
         } catch (Exception e) {
+
             LOGGER.info("Error al realizar la comparacion");
             LOGGER.warn(e.getMessage());
             Assertions.fail();

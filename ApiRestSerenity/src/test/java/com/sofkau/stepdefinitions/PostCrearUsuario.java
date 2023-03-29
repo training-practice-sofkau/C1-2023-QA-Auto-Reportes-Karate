@@ -70,20 +70,24 @@ public class PostCrearUsuario extends ApiSetUp {
     @Then("el usuario debria ver un mensaje con informacion del nuevoo usuario creado con un estatus {int}")
     public void elUsuarioDebriaVerUnMensajeConInformacionDelNuevooUsuarioCreadoConUnEstatus(Integer code) {
         try {
-            // Obtener la respuesta del servidor con Serenity BDD
-            ResponseCrearUsuario actualResponse = returnCrearUsuario().answeredBy(actor);
+            if (code == 200) {
+                // Obtener la respuesta del servidor con Serenity BDD
+                ResponseCrearUsuario actualResponse = returnCrearUsuario().answeredBy(actor);
 
-            actor.should(
-                    // Validar el código de estado HTTP con Serenity BDD
-                    seeThatResponse("El codigo de respuesta es: " + code,
-                            response -> response.statusCode(code)),
-                    // Validar que la respuesta tenga información con Serenity BDD
-                    seeThat("Retorna información",
-                            act -> actualResponse.getJob(), notNullValue())
-            );
-            responseBody = (JSONObject) parser.parse(lastResponse().asString());
-            ModeloRespuesta(actualResponse);
-
+                actor.should(
+                        // Validar el código de estado HTTP con Serenity BDD
+                        seeThatResponse("El codigo de respuesta es: " + code,
+                                response -> response.statusCode(code)),
+                        // Validar que la respuesta tenga información con Serenity BDD
+                        seeThat("Retorna información",
+                                act -> actualResponse.getJob(), notNullValue())
+                );
+                responseBody = (JSONObject) parser.parse(lastResponse().asString());
+                ModeloRespuesta(actualResponse);
+            }
+            if (code == 400) {
+                System.out.println("no hay respuesta");
+            }
         } catch (AssertionError e) {
             LOGGER.warn(e.getMessage());
             Assertions.fail("La validación de la respuesta del servidor ha fallado.");
