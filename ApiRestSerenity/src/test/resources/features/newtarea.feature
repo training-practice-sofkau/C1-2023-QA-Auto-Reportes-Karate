@@ -4,7 +4,7 @@ Feature: Create Todos on the Page
   create a todo on the site
   in order to have a list of todos
 
-  @Register
+  @NewTodo
   Scenario Outline: Succesfull Task Creation
     Given I have the service endpoint
     When the user send a POST request with the task data <userId>,<id>,<title>,<completed>
