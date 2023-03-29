@@ -1,6 +1,6 @@
 package com.sofkau.stepdefinitions;
 
-import com.google.common.net.MediaType;
+
 import com.sofkau.models.ResponseUpdateUser;
 import com.sofkau.models.User;
 import com.sofkau.setup.ApiSetUp;
@@ -8,12 +8,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 
 import java.util.logging.Logger;
-import io.restassured.response.Response;
+
 import org.junit.jupiter.api.Assertions;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static com.sofkau.questions.ReturnUpdateJsonResponse.returnUpdateJsonResponse;
