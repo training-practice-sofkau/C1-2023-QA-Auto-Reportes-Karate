@@ -2,76 +2,75 @@ package com.sofkau.models;
 
 public class UsuarioResponse {
 
-	private String lastName;
-	private int id;
-	private String avatar;
-	private String firstName;
-	private String email;
-	private SupportResponse supportResponse;
+
+    private int id;
+    private String email;
+
+    private String firstName;
+    private String lastName;
+
+    private String avatar;
+
+    private SupportResponse supportResponse;
 
 
-	public UsuarioResponse(String lastName, int id, String avatar, String firstName, String email, SupportResponse supportResponse) {
-		this.lastName = lastName;
-		this.id = id;
-		this.avatar = avatar;
-		this.firstName = firstName;
-		this.email = email;
-		this.supportResponse = supportResponse;
-	}
+    public UsuarioResponse() {
+    }
 
+    public UsuarioResponse(int id, String email, String firstName, String lastName, String avatar, SupportResponse supportResponse) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.avatar = avatar;
+        this.supportResponse = supportResponse;
+    }
 
-	public UsuarioResponse() {
-	}
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getAvatar() {
-		return avatar;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getAvatar() {
+        return avatar;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public SupportResponse getSupportResponse() {
+        return supportResponse;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public SupportResponse getSupport() {
-		return supportResponse;
-	}
-
-	public void setSupport(SupportResponse supportResponse) {
-		this.supportResponse = supportResponse;
-	}
-
-
-
+    public void setSupportResponse(SupportResponse supportResponse) {
+        this.supportResponse = supportResponse;
+    }
 }

@@ -6,9 +6,11 @@ import com.sofkau.setup.ApiSetUp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
@@ -18,10 +20,7 @@ import static com.sofkau.tasks.DoGetSimpleUsuario.doGetSimpleUsuario;
 import static com.sofkau.utils.ReqresResources.REQRES_BASE_URL;
 import static com.sofkau.utils.ReqresResources.RESOURCE;
 import static net.serenitybdd.rest.SerenityRest.lastResponse;
-import static org.hamcrest.core.IsNull.notNullValue;
 
-
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
 public class GetSimpleUsuarioStepDefinition extends ApiSetUp {
@@ -32,7 +31,6 @@ public class GetSimpleUsuarioStepDefinition extends ApiSetUp {
     public static Logger LOGGER = Logger.getLogger(GetSimpleUsuarioStepDefinition.class);
     JSONParser parser = new JSONParser();
     JSONObject responseBody = null;
-    private Response response;
 
 
     @Given("que el usuario se encuentra en la página obtener usuario")
@@ -71,7 +69,7 @@ public class GetSimpleUsuarioStepDefinition extends ApiSetUp {
 
         try {
             UsuarioResponse actualResponse = returnQuestionUsuario().answeredBy(actor);
-            //LOGGER.info("respuesta de la api-->" + actualResponse);
+            LOGGER.info("respuesta de la api-->" + actualResponse.toString());
 
             actor.should(
 
@@ -79,9 +77,10 @@ public class GetSimpleUsuarioStepDefinition extends ApiSetUp {
                     seeThatResponse("El codigo de respuesta es: " + code,
                             response -> response.statusCode(code))
 
-                    );
+            );
 
             responseBody = (JSONObject) parser.parse(lastResponse().asString());
+            LOGGER.info("respuesta de la api 22-->" + actualResponse.toString());
             ModeloRespuesta(actualResponse);
 
 
@@ -95,12 +94,15 @@ public class GetSimpleUsuarioStepDefinition extends ApiSetUp {
 
 
     private void ModeloRespuesta(UsuarioResponse actualResponse) {
-        String email = (String) responseBody.get("email");
-        String first_name = (String) responseBody.get("first_name");
-        String last_name = (String) responseBody.get("last_name");
-        Assertions.assertEquals(email, actualResponse.getEmail());
-        Assertions.assertEquals(first_name, actualResponse.getFirstName());
-        Assertions.assertEquals(last_name, actualResponse.getLastName());
+        String responseBody2 = lastResponse().asString();
+        JsonPath jsonPath = new JsonPath(responseBody2);
+        JSONObject data = (JSONObject) responseBody.get("data");
+        String email = (String) data.get("email");
+        String first_name = (String) data.get("first_name");
+        String last_name = (String) data.get("last_name");
+        Assertions.assertEquals(email, jsonPath.getString("data.email"));
+        Assertions.assertEquals(first_name, jsonPath.getString("data.first_name"));
+        Assertions.assertEquals(last_name, jsonPath.getString("data.last_name"));
 
 
     }

@@ -1,11 +1,8 @@
 package com.sofkau.tasks;
 
 import com.sofkau.interactions.OurGet;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.rest.interactions.Get;
 
 
 public class DoGetSimpleUsuario implements Task {
@@ -29,7 +26,7 @@ public class DoGetSimpleUsuario implements Task {
         actor.attemptsTo(
                 OurGet.to(resource)
                         .with(
-                                RequestSpecification::relaxedHTTPSValidation
+                                requestSpecification -> requestSpecification.relaxedHTTPSValidation()
                         )
 
         );
