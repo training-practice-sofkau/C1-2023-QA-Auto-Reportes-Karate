@@ -8,6 +8,7 @@ Feature: Get Successful
     Given the user is in the JSON place holder page
     When the user sends the <post> that he wants to get
     Then the user sees a status <code> and the post he wants with the id <post>
+
     Examples:
       | post | code |
       | 1    | 200  |
