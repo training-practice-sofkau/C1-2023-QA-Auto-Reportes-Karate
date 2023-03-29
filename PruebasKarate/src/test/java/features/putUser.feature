@@ -9,7 +9,7 @@ Feature: Update User
     And request {"name": <name>,"job": <job>}
     When method put
     Then status 200
-    # And match $.name == "Jessica"
+    And match $.updatedAt != null
 
     Examples:
       | name      | job        |
