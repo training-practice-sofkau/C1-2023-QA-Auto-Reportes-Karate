@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        glue = {"com.sofkau.stepdefinitions"},
-        features = {"src/test/resources/features/myfeature.feature"}
+        features = {"src/test/resources/features/getpokemonsapi.feature"},
+        glue = {"com.sofkau.stepdefinitions"}
 )
-public class Runner {
+
+public class PokeApiTest {
 }
