@@ -1,12 +1,12 @@
 package com.sofkau.utils;
 
-public enum ReqresResources {
-    REQRES_BASE_URL(""),
-    RESOURCE("");
+public enum ReqresInCreate {
 
+    REQRES_BASE_URL("https://reqres.in"),
+    REQRES_BASE_PAHT("/api/users");
     private final String value;
 
-    ReqresResources(String value){
+    ReqresInCreate(String value) {
         this.value = value;
     }
 
