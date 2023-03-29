@@ -7,7 +7,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import org.apache.log4j.Logger;
+import org.junit.jupiter.api.Assertions;
 import static com.sofkau.questions.ReturnPostSuccessfulJsonResponse.returnPostSuccessfulJsonResponse;
 import static com.sofkau.tasks.DoPost.doPost;
 import static com.sofkau.utils.ReqresResources.BASE_JSON_URL;
@@ -23,7 +25,14 @@ public class PostStepDefinition extends ApiSetUp {
 
     @Given("estoy en la pagina de post de jsonplaceholder")
     public void estoyEnLaPaginaDePostDeJsonplaceholder() {
-        setUp(BASE_JSON_URL.getValue());
+        try {
+            setUp(BASE_JSON_URL.getValue());
+            LOGGER.info("INICIA LA AUTOMATIZACION");
+        } catch (Exception e) {
+            LOGGER.info("Fallo la configuracion inicial");
+            LOGGER.warn(e.getMessage());
+            Assertions.fail();
+        }
     }
 
     @When("creo un post con la informacion {int}, {int}, {string}, {string}")
@@ -42,11 +51,12 @@ public class PostStepDefinition extends ApiSetUp {
             LOGGER.info("Response body: " + SerenityRest.lastResponse().asString());
         } catch (Exception e) {
             LOGGER.error("Error al crear el nuevo post: " + e.getMessage());
+            Assertions.fail();
         }
     }
 
-    @Then("me debe devolver el {int} del resultado exitoso")
-    public void meDebeDevolverElCodigoDelResultadoExitoso(Integer codigo) {
+    @Then("me debe devolver el {int} de respuesta y el {string} creado anteriormente")
+    public void meDebeDevolverElDeRespuestaYElCreadoAnteriormente(Integer codigo, String title) {
         try {
             Response actualResponse = returnPostSuccessfulJsonResponse().answeredBy(actor);
             actor.should(
@@ -55,9 +65,13 @@ public class PostStepDefinition extends ApiSetUp {
                     seeThat("Retorna información",
                             act -> actualResponse, notNullValue())
             );
-            LOGGER.info("Nuevo post creado con código exitoso: " + codigo);
+            actor.attemptsTo(
+                    Ensure.that(actualResponse.getTitle()).isEqualTo(title)
+            );
+            LOGGER.info("Nuevo post creado con codigo exitoso: " + codigo);
         } catch (Exception e) {
             LOGGER.error("Error al crear el nuevo post: " + e.getMessage());
+            Assertions.fail();
         }
     }
 }

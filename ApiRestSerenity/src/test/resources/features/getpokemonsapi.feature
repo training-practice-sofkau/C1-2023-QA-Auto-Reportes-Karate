@@ -6,11 +6,11 @@ Feature: Nombre de pokemones
   Scenario Outline: Pokemon registrado
     Given el usuario esta en la PokeApi
     When el usuario hace la peticion con "<pokemon>"
-    Then se valida que el <id> sea el del pokemon correspondiente
+    Then se valida que el <id> y el <status_code> sean correctos
 
 
     Examples:
-      | pokemon    | id |
-      | bulbasaur  | 1  |
-      | ivysaur    | 2  |
-      | charmander | 4  |
+      | pokemon   | id | status_code |
+      | bulbasaur | 1  | 200         |
+      | ivysaur   | 2  | 200         |
+      | solsagan  | 3  | 404         |
