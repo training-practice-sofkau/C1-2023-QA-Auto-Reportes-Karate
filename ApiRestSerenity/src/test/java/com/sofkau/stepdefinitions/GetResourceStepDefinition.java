@@ -71,13 +71,14 @@ public class GetResourceStepDefinition extends ApiSetUp {
     public void theResponseBodyShouldContainAListOf(String resource) {
 
         try {
-            String statusCode = String.valueOf(HttpStatus.SC_OK);
+
+            int statusCode = lastResponse().getStatusCode();;
 
             // Obtener la respuesta como un String
             String responseBody = lastResponse().asString();
             System.out.println(responseBody);
 
-            if (statusCode == "200") {
+            if (statusCode == HttpStatus.SC_OK) {
 
                 // Parsear la respuesta a un objeto JsonPath
                 JsonPath jsonPath = new JsonPath(responseBody);
@@ -91,7 +92,12 @@ public class GetResourceStepDefinition extends ApiSetUp {
                 Assert.assertEquals(6, jsonPath.getInt("per_page"));
                 Assert.assertEquals(12, jsonPath.getInt("total"));
                 Assert.assertEquals(2, jsonPath.getInt("total_pages"));
+                Assert.assertEquals(1, jsonPath.getInt("data[0].id"));
 
+            } else if (statusCode == HttpStatus.SC_NOT_FOUND) {
+                LOGGER.info("Not found, status code: " + HttpStatus.SC_NOT_FOUND);
+            } else {
+                LOGGER.info("Unexpected status code");
             }
 
         } catch (Exception e) {

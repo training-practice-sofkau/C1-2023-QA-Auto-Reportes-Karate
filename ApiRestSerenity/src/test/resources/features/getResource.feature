@@ -16,3 +16,4 @@ Feature: Obtain Resources from ReqRes API
       | "products" | 200  |
       | "posts"    | 200  |
       | ""         | 404  |
+      | "/"        | 404  |
