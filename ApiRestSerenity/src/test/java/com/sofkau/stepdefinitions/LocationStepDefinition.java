@@ -86,6 +86,7 @@ public class LocationStepDefinition extends ApiSetUp {
                 break;
             case 404:
                 LOGGER.info("Location no encontrada");
+
                 break;
             case 500:
                 LOGGER.info("id enviado es ivalido");

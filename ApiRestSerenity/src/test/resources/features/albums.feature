@@ -11,6 +11,7 @@ Feature: Eliminar albums
     Given el administrador esta en la pagina de albums
     When el usuario envia solicitud para eliminar albums  por id <id>
     Then la pagina retornara un estatus con codigo <codigo>
+
     Examples:
       | id  | codigo |
       | "1" | 200    |
