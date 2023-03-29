@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
 import org.apache.http.ParseException;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
@@ -21,6 +22,8 @@ import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeT
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class PlaceHolderPostPhotosStepDefinition extends ApiSetUp {
+
+    private static final Logger LOGGER = Logger.getLogger(PlaceHolderPostPhotosStepDefinition.class);
     JSONParser parser = new JSONParser();
     JSONObject responseBody = null;
 
@@ -31,10 +34,13 @@ public class PlaceHolderPostPhotosStepDefinition extends ApiSetUp {
 
         try {
             setUp(PLACE_HOLDER_BASE_URL.getValue());
+            LOGGER.info("INICIA LA AUTOMATIZACION");
 
         } catch (Exception e) {
 
             actor.should(
+
+
                     seeThatResponse("lA API funciona",
                             response -> response.statusCode(HttpStatus.SC_OK))
             );
@@ -55,9 +61,11 @@ public class PlaceHolderPostPhotosStepDefinition extends ApiSetUp {
                             .withTheResource(PLACE_HOLDER_BASE_URL_POST_PHOTOS.getValue())
                             .andTheRequestBody(postModel)
             );
+            LOGGER.info("Realiza la peticion");
 
         } catch (Exception e) {
-
+            LOGGER.info(" fallo al momento de realizar la peticion");
+            LOGGER.warn(e.getMessage());
             e.printStackTrace();
         }
 
@@ -77,13 +85,20 @@ public class PlaceHolderPostPhotosStepDefinition extends ApiSetUp {
 
                     seeThat("Retorna el JSON con los datos ingresados",
                             act -> respuestaActual.getTitle(), notNullValue())
+
+
             );
 
             responseBody = (JSONObject) parser.parse(lastResponse().asString());
             Comparar(respuestaActual);
+            if  (code == 400){
+
+                LOGGER.info("No se pudo registrar la foto ");
+            }
 
 
         } catch (Exception e) {
+            LOGGER.warn(e.getMessage());
 
         }
 
