@@ -3,7 +3,6 @@ package com.sofkau.utils;
 public enum RickAndMortyResources {
     RICK_AND_MORTY_BASE_URL("https://rickandmortyapi.com/api"),
 
-    RESOURCE("/character/"),
     RESOURCE_LOCATION("/location/");
 
 

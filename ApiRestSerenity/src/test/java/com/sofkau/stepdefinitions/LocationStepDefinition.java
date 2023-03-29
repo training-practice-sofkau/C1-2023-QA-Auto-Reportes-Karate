@@ -1,6 +1,5 @@
 package com.sofkau.stepdefinitions;
 
-import com.sofkau.models.ResponseLocation;
 import com.sofkau.setup.ApiSetUp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

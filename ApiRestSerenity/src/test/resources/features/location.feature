@@ -13,10 +13,10 @@ Feature: Obtener ubicaciones
     Then la pagina retornara un estatus con codigo <codigo> nombre <name> tipo <type>
 
     Examples:
-      | id     | codigo | name            | type     |  |  |
-      | "1"    | 200    | "Earth (C-137)" | "Planet" |  |  |
-      | "1000" | 404    | ""              | ""       |  |  |
-      | ","    | 500    | ""              | ""       |  |  |
+      | id     | codigo | name            | type     |
+      | "1"    | 200    | "Earth (C-137)" | "Planet" |
+      | "1000" | 404    | ""              | ""       |
+      | ","    | 500    | ""              | ""       |
 
 
 
