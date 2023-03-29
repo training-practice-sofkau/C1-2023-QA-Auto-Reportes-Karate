@@ -73,7 +73,6 @@ public class PlaceHolderPostPhotosStepDefinition extends ApiSetUp {
     }
 
 
-
     @Then("el usuario debe ver el registro de la foto con los datos ingreasados y un estatus {int}")
     public void el_usuario_debe_ver_el_registro_de_la_foto_con_los_datos_ingreasados_y_un_estatus(Integer code) throws ParseException {
 
