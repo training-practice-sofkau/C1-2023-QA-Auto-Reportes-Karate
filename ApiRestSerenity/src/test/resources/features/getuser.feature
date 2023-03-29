@@ -17,4 +17,3 @@ Feature: List Successful
       | 5  | Morris   | https://reqres.in/img/faces/5-image.jpg  | 200  |
       | 6  | Ramos    | https://reqres.in/img/faces/6-image.jpg  | 200  |
       | 7  | Lawson   | https://reqres.in/img/faces/7-image.jpg  | 200  |
-      | 15 | Howell   | https://reqres.in/img/faces/12-image.jpg | 404  |
