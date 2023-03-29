@@ -1,12 +1,11 @@
 package com.sofkau.utils;
 
-public enum ReqresResources {
-    DUMMYJSON_BASE_URL("https://dummyjson.com/"),
-    DUMMYJSON_PUT_RESOURCE("users/");
+public enum Log4jValues {
+    LOG4J_PROPERTY_PATH("src/test/resources/properties/log4j.properties");
 
     private final String value;
 
-    ReqresResources(String value){
+    Log4jValues(String value) {
         this.value = value;
     }
 

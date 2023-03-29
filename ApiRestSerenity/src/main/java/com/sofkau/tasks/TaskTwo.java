@@ -1,4 +1,7 @@
 package com.sofkau.tasks;
+import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Actor;
+
 
 
 public class TaskTwo implements Task {
