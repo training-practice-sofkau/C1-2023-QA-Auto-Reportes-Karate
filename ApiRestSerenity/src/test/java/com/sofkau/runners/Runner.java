@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         glue = {"com.sofkau.stepdefinitions"},
-        features = {"src/test/resources/features"}
+        features = {"src/test/resources/features/DeletePosts.feature"}
 )
-public class DeleteRunner {
+public class Runner {
 }
