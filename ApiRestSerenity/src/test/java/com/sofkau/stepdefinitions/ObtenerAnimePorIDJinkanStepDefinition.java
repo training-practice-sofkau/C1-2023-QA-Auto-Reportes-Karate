@@ -4,30 +4,22 @@ import com.sofkau.setup.ApiSetUp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import org.apache.log4j.Logger;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
 
-import static com.sofkau.questions.ReturnGetAnimeListJinkan.returnGetAnimeListJinkan;
 import static com.sofkau.tasks.DoGet.doGet;
 import static com.sofkau.utils.JikanAnimeResources.ANIME_JINKAN_BASE_URL;
 import static com.sofkau.utils.JikanAnimeResources.ANIME_JINKAN_RESOURCE;
-import static net.serenitybdd.rest.SerenityRest.lastResponse;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ObtenerAnimePorIDJinkanStepDefinition  extends ApiSetUp {
 
     private static final Logger LOGGER = Logger.getLogger(ObtenerAnimePorIDJinkanStepDefinition.class);
-     JSONArray responseBody = null;
-    JSONObject firstResponse = null;
-    JSONParser parser = new JSONParser();
 
 
     @Given("que el usuario esta usando la API de Anime Jikan")
@@ -53,7 +45,7 @@ public class ObtenerAnimePorIDJinkanStepDefinition  extends ApiSetUp {
                     doGet()
                             .withTheResource((ANIME_JINKAN_RESOURCE.getValue()+id))
             );
-//            System.out.println(SerenityRest.lastResponse().body().asString());
+              System.out.println(SerenityRest.lastResponse().body().asString());
 
 
             LOGGER.info("Realiza la peticion");
@@ -66,58 +58,43 @@ public class ObtenerAnimePorIDJinkanStepDefinition  extends ApiSetUp {
     }
 
 
-    @Then("se deberia observar el {int}  junto con la  {string} del anime y el {string} del anime")
-    public void se_deberia_observar_el_junto_con_la_del_anime_y_el_del_anime(Integer statusCode, String url, String idAnime) {
+    @Then("se deberia observar el {int}  junto con la  {string} del anime y el {int} del anime")
+    public void se_deberia_observar_el_junto_con_la_del_anime_y_el_del_anime(Integer statusCode, String url, Integer idAnime) {
 
         try {
-            Response respuestaActual =  returnGetAnimeListJinkan().answeredBy(actor);
-            //responseBody = (JSONObject) parser.parse(respuestaActual.getBody().asString());
-           // responseBody = (JSONObject) parser.parse(lastResponse().asString());
 
-
-            Response actualResponse = returnGetAnimeListJinkan().answeredBy(actor);
-           // responseBody = (JSONObject) parser.parse(actualResponse.getBody().asString());
-
-            actor.should(
-                    seeThatResponse("El codigo de respuesta deberia ser: " + statusCode,
-                            response -> response.statusCode(statusCode))
-
-            );
-
-        responseBody = (JSONArray) parser.parse(respuestaActual.getBody().asString());
-        firstResponse = (JSONObject) responseBody.get(1);
-
-            actor.should(
-                    seeThat("El id de respuesta deberia ser: " ,
-                            compararId -> firstResponse.get("mal_id").toString(), equalTo(idAnime))
-
-            );
-
-
-
-
-            //actor.should(
-              //      seeThat("Comparar Id esperado",
-                //            compararId ->firstResponse.get ("mal_id").toString(),equalTo(idAnime) ));
-
-            //actor.should(
-           //         seeThat("Comparar url esperada",
-              //              compararUrl ->firstResponse.get ("url").toString(),equalTo(url) ));
-
-            //LOGGER.info(firstResponse.get ("mal_id").toString());
-           // LOGGER.info(firstResponse.get ("url").toString());
-
-          //  String actualTitle = (String) responseBody.get("mal_id");
-
-            //Assertions.assertEquals(idAnime,actualTitle);
+            if (statusCode == 404) {
+                LOGGER.info("No se encontro la peticion ");
+            }
+            if (statusCode == 200) {
+                assersionesStatus200 (statusCode, url, idAnime);
+            }
 
         }catch (Exception e){
             LOGGER.warn(e.getMessage());
         }
-
     }
 
 
+
+
+
+    private void assersionesStatus200(Integer statusCode, String url, Integer idAnime) {
+        actor.should(
+                seeThatResponse("El codigo de respuesta deberia ser: " + statusCode,
+                        response -> response.statusCode(statusCode))
+        );
+
+        actor.should(
+                seeThatResponse("Comprobar IdAnime: ",
+                        response -> response.body("data.mal_id",equalTo(idAnime)))
+        );
+
+        actor.should(
+                seeThatResponse("Comprobar url Anime: ",
+                        response -> response.body("data.url",equalTo(url)))
+        );
+    }
 
 
 }

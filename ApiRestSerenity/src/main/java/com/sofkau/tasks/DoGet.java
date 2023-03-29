@@ -1,9 +1,7 @@
 package com.sofkau.tasks;
-
-import com.sofkau.interactions.OurGet;
-import io.restassured.http.ContentType;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.rest.interactions.Get;
 
 public class DoGet implements Task {
     private String resource;
@@ -18,15 +16,9 @@ public class DoGet implements Task {
     public <T extends Actor> void performAs(T actor) {
 
         actor.attemptsTo(
-                OurGet.to(resource)
-                        .with(
-                                requestSpecification -> requestSpecification.relaxedHTTPSValidation()
-                                      //.contentType(ContentType.JSON)
-                        )
+                Get.resource(resource)
         );
-
     }
-
 
     public static DoGet doGet(){
         return new DoGet();
