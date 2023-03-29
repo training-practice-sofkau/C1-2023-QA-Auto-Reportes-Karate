@@ -7,14 +7,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import net.serenitybdd.screenplay.rest.questions.LastResponse;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
 
-import java.nio.charset.StandardCharsets;
 
 import static com.sofkau.questions.ReturnGetResponse.returnGetResponse;
 import static com.sofkau.tasks.DoPut.doPut;
