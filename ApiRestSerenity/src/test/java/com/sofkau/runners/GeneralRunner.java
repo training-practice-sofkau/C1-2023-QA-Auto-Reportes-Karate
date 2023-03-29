@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         glue = {"com.sofkau.stepdefinitions"},
-        features = {"src/test/resources/features/myfeature.feature"}
+        features = {"src/test/resources/features"}
 )
-public class Runner {
+public class GeneralRunner {
 }

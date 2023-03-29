@@ -17,7 +17,8 @@ import static com.sofkau.tasks.DoGet.doGet;
 import static com.sofkau.utils.MarvelResources.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class GetASingleCharacterStepDefinition extends ApiSetUp {
 
@@ -60,15 +61,22 @@ public class GetASingleCharacterStepDefinition extends ApiSetUp {
         }
     }
 
-    @Then("the user gets a status code response OK and can see the character's name {string}")
-    public void theUserGetsAStatusCodeResponseOKAndCanSeeTheCharacterSName(String name) throws ParseException {
-        String characterName = getCharacterName();
+    @Then("the user gets a status code response OK and can see the character's name {string} and {string}")
+    public void theUserGetsAStatusCodeResponseOKAndCanSeeTheCharacterSNameAnd(String name, String id) throws ParseException {
+
         try {
+            String characterName = getCharacterName();
+            String characterId = getCharacterId();
+            long characterComics = getCharacterComics();
             actor.should(
                     seeThatResponse("El codigo de restpuesta es: " + HttpStatus.SC_OK,
                             response -> response.statusCode(HttpStatus.SC_OK)),
                     seeThat("El nombre del personaje es: ", act-> characterName,
-                            equalToIgnoringCase(name))
+                            equalTo(name)),
+                    seeThat("El id del personaje es: ", act-> characterId,
+                            equalTo(id)),
+                    seeThat("El personaje esta presente en los comics de Marvel: ", act-> characterComics,
+                            notNullValue())
             );
             LOGGER.info("CUMPLE!");
         } catch (Exception e) {
@@ -135,5 +143,26 @@ public class GetASingleCharacterStepDefinition extends ApiSetUp {
         JSONObject att = (JSONObject) results.get(0);
         String characterName = att.get(ATTRIBUTE_NAME.getValue()).toString();
         return characterName;
+    }
+
+    private String getCharacterId() throws ParseException {
+        response = (Response) SerenityRest.lastResponse().body();
+        responseBody = (JSONObject) parser.parse(response.getBody().asString());
+        JSONObject data = (JSONObject) responseBody.get(ATTRIBUTE_DATA.getValue());
+        JSONArray results = (JSONArray) data.get(ATTRIBUTE_RESULTS.getValue());
+        JSONObject att = (JSONObject) results.get(0);
+        String characterId = att.get(ATTRIBUTE_ID.getValue()).toString();
+        return characterId;
+    }
+
+    private long getCharacterComics() throws ParseException {
+        response = (Response) SerenityRest.lastResponse().body();
+        responseBody = (JSONObject) parser.parse(response.getBody().asString());
+        JSONObject data = (JSONObject) responseBody.get(ATTRIBUTE_DATA.getValue());
+        JSONArray results = (JSONArray) data.get(ATTRIBUTE_RESULTS.getValue());
+        JSONObject att = (JSONObject) results.get(0);
+        JSONObject comics = (JSONObject) att.get("comics");
+        long availableComics = (long) comics.get("available");
+        return availableComics;
     }
 }

@@ -7,7 +7,8 @@ public enum MarvelResources {
     MARVEL_HASH("b7026387801d6606abe480e0dd879b2e"),
     ATTRIBUTE_NAME("name"),
     ATTRIBUTE_DATA("data"),
-    ATTRIBUTE_RESULTS("results");
+    ATTRIBUTE_RESULTS("results"),
+    ATTRIBUTE_ID("id");
 
 
     private final String value;

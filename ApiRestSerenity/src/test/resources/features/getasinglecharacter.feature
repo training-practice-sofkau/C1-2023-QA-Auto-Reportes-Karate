@@ -6,7 +6,7 @@ Feature: Get a single character by id
   Scenario Outline: List character info successfully
     Given the user is in the Marvel developer portal
     When the user sends a request with a valid character id "<id>"
-    Then the user gets a status code response OK and can see the character's name "<name>"
+    Then the user gets a status code response OK and can see the character's name "<name>" and "<id>"
     Examples:
       | id      | name                     |
       | 1011136 | Air-Walker (Gabriel Lan) |
