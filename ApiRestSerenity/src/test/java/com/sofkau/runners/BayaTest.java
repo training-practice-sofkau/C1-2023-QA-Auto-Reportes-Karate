@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/bayapokemon.feature"},
         glue = {"com.sofkau.stepdefinitions"},
         tags = {""}
+
 )
 public class BayaTest {
 }
