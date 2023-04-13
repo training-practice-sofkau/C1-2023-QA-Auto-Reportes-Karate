@@ -7,8 +7,10 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
+        features = {"src/test/resources/features/bayapokemon.feature"},
         glue = {"com.sofkau.stepdefinitions"},
-        features = {"src/test/resources/features/myfeature.feature"}
+        tags = {""}
+
 )
-public class Runner {
+public class BayaTest {
 }
